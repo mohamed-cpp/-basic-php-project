@@ -1,1 +1,1 @@
-# -basic-php-project
+# basic-php-project
