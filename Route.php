@@ -8,21 +8,13 @@ class Route{
     private static $url = null;
 
     public static function add($expression, $call, $method = 'get'){
-        /*start for takes a parameter */
         $parameter = null;
+        $fun = self::getParameter($expression);
 
-        if(preg_match('/{(.*?)}/', $expression, $output_array)){
-            $url_without_par = preg_replace('/{(.*?)}/', '', $expression);
-
-            $parameter = str_replace( $url_without_par, '', $_SERVER['REQUEST_URI']) ;
-            $cleaned_url = substr_replace($_SERVER['REQUEST_URI'],"",
-                    similar_text($url_without_par, $_SERVER['REQUEST_URI']));
-            if($url_without_par=== $cleaned_url){
-                self::$url = $cleaned_url;
-                $expression = $url_without_par;
-            }
+        if ($fun){
+            $parameter = $fun['parameter'];
+            $expression = $fun['expression'];
         }
-        /*end for takes a parameter */
 
         array_push(self::$routes,Array(
             'expression' => $expression,
@@ -43,7 +35,7 @@ class Route{
     public static function run($basepath = '/'){
 
         // Parse current url
-        $parsed_url = parse_url(self::$url);//Parse Uri
+        $parsed_url = parse_url(self::$url ? self::$url : $_SERVER['REQUEST_URI']);//Parse Uri
 
         if(isset($parsed_url['path'])){
             $path = $parsed_url['path'];
@@ -125,6 +117,23 @@ class Route{
 
         }
 
+    }
+    private static function getParameter($expression){
+        if(preg_match('/{(.*?)}/', $expression, $output_array)){
+            $url_without_par = preg_replace('/{(.*?)}/', '', $expression);
+
+            $parameter = str_replace( $url_without_par, '', $_SERVER['REQUEST_URI']) ;
+            $cleaned_url = substr_replace($_SERVER['REQUEST_URI'],"",
+                similar_text($url_without_par, $_SERVER['REQUEST_URI']));
+            if($url_without_par=== $cleaned_url){
+                self::$url = $cleaned_url;
+                return [
+                    "parameter"=>$parameter,
+                    "expression"=>$url_without_par
+                ];
+            }
+        }
+        return false;
     }
 
 }
