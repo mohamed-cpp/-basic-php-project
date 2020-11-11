@@ -14,16 +14,22 @@ Route::add('/test',function(){
 });
 
 Route::add('/names',[
-    "path" => "Models/Names.php",
-    "class" => "Names",
+    "path" => "Controls/NamesControl.php",
+    "class" => "NamesControl",
     "fun" => "index",
 ]);
 
-Route::add('/names/show/{id}',[ // not complected
-    "path" => "Models/Names.php",
-    "class" => "Names",
+Route::add('/names/show/{id}',[
+    "path" => "Controls/NamesControl.php",
+    "class" => "NamesControl",
     "fun" => "show",
 ]);
+
+Route::add('/names/create/{name}',[
+    "path" => "Controls/NamesControl.php",
+    "class" => "NamesControl",
+    "fun" => "create",
+],'post');
 
 // Post route example
 Route::add('/contact-form',function(){

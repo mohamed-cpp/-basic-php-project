@@ -10,13 +10,17 @@ class Route{
     public static function add($expression, $call, $method = 'get'){
         /*start for takes a parameter */
         $parameter = null;
+
         if(preg_match('/{(.*?)}/', $expression, $output_array)){
             $url_without_par = preg_replace('/{(.*?)}/', '', $expression);
+
             $parameter = str_replace( $url_without_par, '', $_SERVER['REQUEST_URI']) ;
             $cleaned_url = substr_replace($_SERVER['REQUEST_URI'],"",
                     similar_text($url_without_par, $_SERVER['REQUEST_URI']));
-            self::$url = $cleaned_url;
-            $expression = $url_without_par;
+            if($url_without_par=== $cleaned_url){
+                self::$url = $cleaned_url;
+                $expression = $url_without_par;
+            }
         }
         /*end for takes a parameter */
 

@@ -1,14 +1,18 @@
 <?php
 
+include_once '../../config/Database.php';
+
+
 class Names
 {
-    public function index(){
-        //echo $_GET['id'];
-        echo "asdasd";
+    private $conn;
+    private $table = 'names';
+
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->connect();
     }
-    public function show($id){
-        //echo $_GET['id'];
-        echo $id;
-    }
+
+
 
 }
