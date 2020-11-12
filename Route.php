@@ -87,7 +87,8 @@ class Route{
                     }
 
                     require_once $route['call']['path'];
-                    (new $route['call']['class']())->{$route['call']['fun']}($route['parameter']);
+                    (new $route['call']['class']())
+                        ->{$route['call']['fun']}($route['parameter']);
 
 //                    call_user_func_array($route['function'], $matches);
 

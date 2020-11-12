@@ -1,12 +1,19 @@
 <?php
 
-include_once '../../config/Database.php';
+include_once 'config/Database.php';
+include_once 'db_abstract/database.php';
 
 
-class Names
+class Names extends Database_Abs
 {
-    private $conn;
-    private $table = 'names';
+    protected $conn;
+    protected $table = 'names';
+    protected $primaryKey = 'id';
+
+    protected $columns  =[
+        'id',
+        'name',
+    ];
 
     public function __construct() {
         $database = new Database();
