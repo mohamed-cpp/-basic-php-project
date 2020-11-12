@@ -3,11 +3,13 @@
 // Include router class
 include('Route.php');
 
-//// Add base route (startpage)
-//Route::add('/',function(){
-//    echo 'Welcome :-)';
-//});
-//
+
+Route::add('/',[
+    "path" => "Controls/HomePageControl.php",
+    "class" => "HomePageControl",
+    "fun" => "index",
+]);
+
 //// Simple test route that simulates static html file
 //Route::add('/test',function(){
 //    echo 'Hello from test.html';
@@ -25,7 +27,7 @@ Route::add('/names/create',[
     "fun" => "create",
 ],'post');
 
-Route::add('/names/delete/{name}',[
+Route::add('/names/delete/{id}',[
     "path" => "Controls/NamesControl.php",
     "class" => "NamesControl",
     "fun" => "delete",

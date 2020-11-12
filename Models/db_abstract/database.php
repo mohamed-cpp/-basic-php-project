@@ -75,6 +75,7 @@ abstract class Database_Abs {
             if ($count > 0) {
                 return json_encode(['message' => 'Deleted Successfully']);
             } else {
+                header("HTTP/1.0 404 Not Found");
                 return json_encode(['message' => 'Not Found']);
             }
         } catch (PDOException $e) {
