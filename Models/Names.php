@@ -15,10 +15,6 @@ class Names extends Database_Abs
         'name',
     ];
 
-    public function __construct() {
-        $database = new Database();
-        $this->conn = $database->connect();
-    }
 
 
 

@@ -8,6 +8,11 @@ abstract class Database_Abs {
 
     protected $columns =[];
 
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->connect();
+    }
+
     public function getAll()
     {
         // Create query

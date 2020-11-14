@@ -51,7 +51,7 @@ $(document).ready(function(){
     $("#name_form_submit").click(function(e){
 
         e.preventDefault();
-        $.ajax('names/create', {
+        $.ajax('/names/create', {
             type: 'post',
             data:  getFormData($("#name_form")),
             dataType: 'json',
