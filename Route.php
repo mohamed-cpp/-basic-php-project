@@ -137,4 +137,16 @@ class Route{
         return false;
     }
 
+    private static function getArgNames($class,$funcName) { 
+        $c = new ReflectionClass($class);
+//        $f = new ReflectionFunction($funcName);
+        $f = $c->getMethod($funcName);
+        $result = array();
+        foreach ($f->getParameters() as $param) {
+//            echo $param->getType();
+            $result[] = $param->name;
+        }
+        return $result;
+    }
+
 }

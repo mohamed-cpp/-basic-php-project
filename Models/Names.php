@@ -15,7 +15,11 @@ class Names extends Database_Abs
         'name',
     ];
 
-
+    public function __construct()
+    {
+        parent::__construct();
+//        echo "Asd";
+    }
 
 
 }
