@@ -16,6 +16,7 @@
 
 </VirtualHost>
 ```
+##### Reload apache server
 ```
 // open hosts file //
 
