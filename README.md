@@ -27,7 +27,7 @@ example.test 127.0.0.1
 
 ``` 
 #### For Nginx
-## Note: NOT TEST
+## Note: NOT TESTED
 ```
 server {
 
